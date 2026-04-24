@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zulfiqar Proposes Tafseer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;700&display=swap');
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            background-color: #050005; color: #fff; font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        #canvas-hearts {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        }
+
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: radial-gradient(circle, #2b0000 0%, #050005 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem; color: #ff4d6d; text-shadow: 0 0 20px #ff4d6d;
+            margin: 10px;
+        }
+
+        .content-section {
+            padding: 60px 20px; max-width: 800px; margin: auto; text-align: center;
+        }
+
+        .photo-box {
+            border: 10px solid #fff; padding: 5px; background: #fff;
+            transform: rotate(-2deg); box-shadow: 0 15px 50px rgba(255, 77, 109, 0.3);
+            margin: 40px 0; transition: 0.5s;
+        }
+
+        .photo-box:nth-child(even) { transform: rotate(2deg); }
+
+        .photo-box img { width: 100%; display: block; border-radius: 2px; }
+
+        .letter-text {
+            font-size: 1.3rem; line-height: 2; margin: 30px 0;
+            background: rgba(255, 255, 255, 0.05); padding: 35px;
+            border-radius: 20px; border-left: 5px solid #ff4d6d;
+        }
+
+        .proposal-container {
+            height: 90vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; background: #000;
+        }
+
+        .btn-main {
+            padding: 20px 50px; font-size: 2.2rem; background: #ff4d6d;
+            border: none; color: white; border-radius: 50px; cursor: pointer;
+            font-family: 'Great Vibes', cursive; box-shadow: 0 0 30px #ff4d6d;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover { transform: scale(1.1); background: #ff0040; }
+
+        #secret-message {
+            display: none; text-align: center; animation: fadeIn 2s ease;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive; font-size: 3rem; color: #ff4d6d;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-hearts"></canvas>
+
+    <div class="hero">
+        <p style="letter-spacing: 5px; opacity: 0.7;">FOR MY BEAUTIFUL QUEEN</p>
+        <h1>Syeda Tafseer Zehra Naqvi</h1>
+        <p>Ek Chota Sa Paigham... Jo Mere Dil Se Nikla Hai</p>
+        <div style="margin-top: 40px; font-size: 2rem; color: #ff4d6d; animation: bounce 2s infinite;">↓</div>
+    </div>
+
+    <div class="content-section">
+        <div class="photo-box">
+            <img src="pic1.jpg" alt="Syed and Syeda">
+        </div>
+
+        <div class="letter-text">
+            Tafseer, tumhare aane se meri zindagi mein wo rang aaye hain jo maine kabhi khuwab mein bhi nahi dekhe thay. 
+            Main, <strong style="color: #ff4d6d;">Syed Zulfiqar Mehdi Naqvi</strong>, aaj tum se wo kehna chahta hoon jo lafzon mein kehna mushkil hai.
+            <br><br>
+            Tum meri zindagi ki wo kitab ho jis ka har panna mohabbat se bhara hai. Main chahta hoon ke hamari ye dastan hamesha ke liye amar ho jaye. 
+            Jab tak meri saansein baaqi hain, main sirf tumhara rahunga.
+        </div>
+
+        <div class="photo-box">
+            <img src="pic2.png" alt="Love Memory">
+        </div>
+
+        <div class="letter-text">
+            Main tumhe wo sari khushiyan dena chahta hoon jis ki tum haqdaar ho. 
+            Tum sirf mera ishq nahi, tum meri izzat aur mera maan ho. Kya tum tayyar ho meri har dua ka hissa banne ke liye?
+        </div>
+    </div>
+
+    <div class="proposal-container">
+        <div id="before-click">
+            <h2 style="font-size: 2rem; margin-bottom: 30px;">Tafseer, Mujhse Kuch Kehna Hai...</h2>
+            <button class="btn-main" onclick="startProposal()">Click Here, My Life</button>
+        </div>
+
+        <div id="secret-message">
+            <h1 style="font-size: 4rem; color: #ff4d6d; font-family: 'Great Vibes', cursive;">Syeda Tafseer Zehra Naqvi</h1>
+            <h2 style="font-size: 2rem;">Will You Stay With Me Forever?</h2>
+            <p style="font-size: 1.2rem; margin-top: 30px;">Hamesha Ke Liye Tumhara,</p>
+            <div class="signature">Syed Zulfiqar Mehdi Naqvi</div>
+            <div style="font-size: 4rem; margin-top: 15px;">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        function startProposal() {
+            document.getElementById('before-click').style.display = 'none';
+            document.getElementById('secret-message').style.display = 'block';
+            
+            const canvas = document.getElementById('canvas-hearts');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let hearts = [];
+            function createHeart() {
+                return {
+                    x: Math.random() * canvas.width,
+                    y: canvas.height + 20,
+                    size: Math.random() * 10 + 5,
+                    speed: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.5 + 0.3
+                };
+            }
+
+            for(let i=0; i<40; i++) hearts.push(createHeart());
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ff4d6d';
+                hearts.forEach(h => {
+                    ctx.globalAlpha = h.opacity;
+                    ctx.beginPath();
+                    ctx.arc(h.x, h.y, h.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    h.y -= h.speed;
+                    if(h.y < -20) h.y = canvas.height + 20;
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
